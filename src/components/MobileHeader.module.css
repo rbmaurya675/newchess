@@ -1,0 +1,54 @@
+.header {
+  width: 100%;
+  background-color: hsl(48deg 5% 18%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.25em;
+}
+
+.menuBtn {
+  background: none;
+  border: none;
+  padding: 0.25em;
+}
+
+.menuBtn>svg {
+  font-size: 2rem;
+  color: #fff;
+}
+
+.btn {
+  background: none;
+  border: none;
+  text-decoration: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 0.5em;
+  font-size: 1.2em;
+  transition: all 0.1s;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:visited {
+  color: #fff;
+}
+
+.brand {
+  font-size: 1.4em;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+@media (min-width: 769px) {
+  .header {
+    display: none;
+  }
+}

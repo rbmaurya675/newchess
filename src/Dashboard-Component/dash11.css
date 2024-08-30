@@ -1,0 +1,10 @@
+.trapezoid {
+    border-bottom: 50px solid #9300a6;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    top: 300px;
+    background: red;
+
+
+    width: 100%;
+}

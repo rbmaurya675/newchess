@@ -1,0 +1,13 @@
+.avatar {
+  text-decoration: none;
+  width: 40px;
+  height: 40px;
+  color: var(--bs-blue);
+  border-radius: 8px;
+  border: solid 1px var(--bs-blue);
+  transition: all 0.2s;
+}
+
+.avatar:hover {
+  border-color: var(--bs-cyan);
+}

@@ -1,0 +1,67 @@
+/* .card {
+  padding: 1em;
+  background-color: red;
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  border-radius: 12px;
+  box-shadow: 0px 11px 0px rgba(20, 20, 20, 0.41);
+  transition: all 0.2s;
+  height: 100%;
+} */
+/* FeatureCard.module.css */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  width: 90%;
+  margin-left: 10px;
+  text-decoration: none;
+  color: white;
+  background: linear-gradient(45deg, rgb(20, 1, 4), rgb(60, 6, 63), #ff00f3, #1b08c6ed, yellow, #d6081a);
+  /* Example gradient */
+  background-size: 400% 400%;
+  transition: background-position 0.5s ease;
+}
+
+.card:hover {
+  background-position: 100% 0;
+}
+
+.icon {
+  font-size: 2rem;
+  /* Adjust size as needed */
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 1.2rem;
+  /* Adjust size as needed */
+}
+
+.card>svg {
+  font-size: 3em;
+  transition: all 0.2s;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.card:hover {
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.card:hover>svg {
+  transform: scale(1.2);
+}
