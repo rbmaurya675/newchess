@@ -45,15 +45,15 @@ const Translate = () => {
                                         Amount
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Action
+                                        Product
                                     </th>
 
                                     <th scope="col" class="px-6 py-3">
                                         Action
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    {/* <th scope="col" class="px-6 py-3">
                                         Action
-                                    </th>
+                                    </th> */}
 
                                 </tr>
 
@@ -89,11 +89,12 @@ const Translate = () => {
                                         <Button style={{ background: 'red' }}>Reject</Button>
                                     </td> */}
                                     <td class="">
-                                        <Button style={{ background: 'green' }}>Approve</Button>
-                                    </td>
-                                    <td class="">
                                         <Button style={{ background: 'red' }}>Reject</Button>
+                                        <Button style={{ background: 'green', marginLeft: '4px' }}>Approve</Button>
                                     </td>
+                                    {/* <td class="">
+                                       
+                                    </td> */}
 
                                 </tr>
                             </tbody>
