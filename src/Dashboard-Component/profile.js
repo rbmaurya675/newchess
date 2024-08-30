@@ -45,27 +45,60 @@ const Profile = () => {
                 </div>
                 <div className='col-sm-10'>
                     <Adminnavigate />
-                    <div className="container mt-5">
-                        <div className="card bg-dark text-white">
+                    {/* <div className="container mt-5"> */}
+                        {/* <div className="card bg-dark text-white"> */}
 
 
-                            {userData ? (
+                            {userData ? ( 
+                                // <div>
+                                //     <p><strong>Name:</strong> {userData.name}</p>
+                                //     <p><strong>Email:</strong> {userData.email}</p>
+                                //     <p><strong>Role:</strong> {userData.role}</p>
+                                //     <p><strong>Ref ID:</strong> {userData.ref_id}</p>
+                                //     <p><strong>Remaining Funds:</strong> {userData.fond}</p>
+                                // </div>
+
                                 <div>
-                                    <p><strong>Name:</strong> {userData.name}</p>
-                                    <p><strong>Email:</strong> {userData.email}</p>
-                                    <p><strong>Role:</strong> {userData.role}</p>
-                                    <p><strong>Ref ID:</strong> {userData.ref_id}</p>
-                                    <p><strong>Remaining Funds:</strong> {userData.fond}</p>
+                                <h3 className='ml-3 mt-3'>User Profile</h3>
+                                <table className="table mt-2 ml-2">
+
+                                    <tbody>
+                                        <tr>
+                                            <td>Name:</td>
+                                            <td>{userData.name}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email:</td>
+                                            <td>{userData.email}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Role:</td>
+                                            <td>{userData.role}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ref ID:</td>
+                                            <td>{userData.ref_id}</td>
+                                        </tr>
+                                        {/* <tr>
+                                            <td>Ref ID</td>
+                                            <td>{userData.fond}</td>
+                                        </tr> */}
+                                        <tr>
+                                            <td>Remaining Funds</td>
+                                            <td>{userData.fond}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                                 </div>
                             ) : (
                                 <p>Loading...</p>
                             )}
 
+                            
 
 
-
-                        </div>
-                    </div>
+                        {/* </div> */}
+                    {/* </div> */}
                 </div>
             </div>
         </div>
