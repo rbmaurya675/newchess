@@ -72,11 +72,11 @@ const Adminwithdrow = () => {
                 </div>
                 <div className='col-sm-10'>
                     <Adminnavigate />
-                    <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
-                        <div className='container-fluid mt-4'>
+                    <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-4 ml-0">
+                        <div className='container-fluid mt-2'>
                             <div className='row'>
-                                <div className='col-sm-11'><h5>Withdrawal Approve</h5></div>
-                                <div className='col-sm-1'><img src='cros.png ' style={{ height: '12px' }} alt="Close" /></div>
+                                <div className='col-sm-11 ml-2'><h5>Withdrawal Approve</h5></div>
+                                {/* <div className='col-sm-1'><img src='cros.png ' style={{ height: '12px' }} alt="Close" /></div> */}
                             </div>
                         </div>
 

@@ -19,16 +19,16 @@ const Translate = () => {
                             <div className='row'>
 
                                 <div className='row'>
-                                    <div className='col-sm-11'><h5>List Of Members</h5></div>
+                                    <div className='col-sm-11 ml-4'><h5>List Of Members</h5></div>
 
                                 </div>
-                                <h5 className='text-center mt-1'> <Search placeholder="input search text" style={{ width: 200 }} /></h5>
+                                <h5 className='text-center mt-1 ml-2'> <Search placeholder="input search text" style={{ width: 200 }} /></h5>
                             </div>
                         </div>
 
                         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" title='g'>
 
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 ml-2 dark:text-gray-400">
 
                                 <tr>
 

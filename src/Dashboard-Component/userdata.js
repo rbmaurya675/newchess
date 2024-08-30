@@ -39,7 +39,7 @@ const Userdata = () => {
                 </div>
                 <div className='col-sm-10'>
                     <Adminnavigate />
-                    <h2>All Users</h2>
+                    <h2 className="ml-6 mt-3">All Users</h2>
                     {users.length > 0 ? (
                         <table className="table">
                             <thead>
@@ -64,7 +64,7 @@ const Userdata = () => {
                             </tbody>
                         </table>
                     ) : (
-                        <p>No users available.</p>
+                        <p className="ml-7 text-red-900">No users available.</p>
                     )}
                 </div>
             </div>

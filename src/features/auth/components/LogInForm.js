@@ -114,7 +114,7 @@ const LogInForm = () => {
     setLoading(true);
     setMessage(""); // Clear any previous messages
 
-    const apiRes = await fetch("http://localhost:7000/api/login", {
+    const apiRes = await fetch("https:moneychess.in/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

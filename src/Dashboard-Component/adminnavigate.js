@@ -10,7 +10,7 @@ const Adminnavigate = () => {
                 <div className='col-sm-2 flex text-white'>
 
                     <img src='notif.png' className='h-7' />
-                    <Link to='/profile'> <span class="flex-1  whitespace-nowrap text-black" ><img src='profil.png' className='h-7 mx-3' /></span></Link>
+                    <Link to='/profile'> <span class="flex-1  whitespace-nowrap text-black "  ><img src='profil.png' className='h-7 mx-3' /></span></Link>
                 </div>
 
             </div>
