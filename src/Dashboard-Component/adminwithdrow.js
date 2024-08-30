@@ -12,7 +12,7 @@ const Adminwithdrow = () => {
             const token = localStorage.getItem('token'); // Get the token from localStorage
 
             try {
-                const response = await fetch('http://localhost:7000/api/withdrawn', {
+                const response = await fetch('https:moneychess.in/api/withdrawn', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ const Adminwithdrow = () => {
         const token = localStorage.getItem('token'); // Get the token from localStorage
 
         try {
-            const response = await fetch('http://localhost:7000/api/approve-fond-request', {
+            const response = await fetch('https:moneychess.in/api/approve-fond-request', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

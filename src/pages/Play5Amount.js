@@ -22,7 +22,7 @@ const Play5Amount = () => {
         };
 
         try {
-            const response = await fetch('http://localhost:7000/api/add-fond', requestOptions);
+            const response = await fetch('https:moneychess.in/api/add-fond', requestOptions);
             const data = await response.json();
             if (response.ok) {
                 if (data.statusCode === '201') {

@@ -14,7 +14,7 @@ const Admindashboard = () => {
 
     const fetchUsers = async () => {
         try {
-            const response = await axios.get('http://localhost:7000/api/getall');
+            const response = await axios.get('https:moneychess.in/api/getall');
             setUsers(response.data);
         } catch (error) {
             console.error('Error fetching users:', error);
@@ -23,7 +23,7 @@ const Admindashboard = () => {
 
     const onFinish = async (values) => {
         try {
-            const response = await axios.post('http://localhost:7000/api/create', values);
+            const response = await axios.post('https:moneychess.in/api/create', values);
             console.log('User created:', response.data);
             fetchUsers();
         } catch (error) {

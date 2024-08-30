@@ -27,7 +27,7 @@ const Dashboardheader = () => {
         };
 
         try {
-            const response = await fetch('http://localhost:7000/api/user-transation-details', requestOptions);
+            const response = await fetch('https:moneychess.in/api/user-transation-details', requestOptions);
             const data = await response.json();
 
             if (response.ok) {

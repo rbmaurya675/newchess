@@ -12,7 +12,7 @@
 //                     <div className='col-sm-10'>
 
 //                         <Dashnavbar />
-   
+
 
 //                         <div className='row ' style={{ background: '#f0f0ff', minHeight: '637px' }}>
 //                             <div className='col-sm-3'></div>
@@ -56,7 +56,7 @@ const Withdrowal = () => {
         };
 
         try {
-            const response = await fetch('http://localhost:7000/api/user-withdrawn', requestOptions);
+            const response = await fetch('https:moneychess.in/api/user-withdrawn', requestOptions);
             const data = await response.json();
 
             if (response.ok) {
@@ -86,7 +86,7 @@ const Withdrowal = () => {
                                 <table className='table'>
                                     <thead>
                                         <tr>
-                                            
+
                                             <th>Amount</th>
                                             <th>Status</th>
                                             <th>Date</th>
@@ -95,7 +95,7 @@ const Withdrowal = () => {
                                     <tbody>
                                         {withdrawals.map(withdrawal => (
                                             <tr key={withdrawal.id}>
-                                            
+
                                                 <td>${withdrawal.amount}</td>
                                                 <td>{withdrawal.status === 0 ? 'Pending' : 'Completed'}</td>
                                                 <td>{new Date(withdrawal.date).toLocaleString()}</td>
@@ -108,7 +108,7 @@ const Withdrowal = () => {
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     );

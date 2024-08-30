@@ -14,9 +14,9 @@ const Dasprofile = () => {
                 if (token) {
                     const decodedToken = jwtDecode(token); // Decode the token to get user data
                     const userId = decodedToken.id; // Assuming the token contains the user ID as 'id'
-                    
+
                     // Make GET request to fetch user data
-                    const response = await axios.get(`http://localhost:7000/api/getone/${userId}`, {
+                    const response = await axios.get(`https:moneychess.in/api/getone/${userId}`, {
                         headers: {
                             Authorization: `Bearer ${token}` // Include authorization token in headers
                         }
@@ -49,7 +49,7 @@ const Dasprofile = () => {
                             <div>
                                 <h3>User Profile</h3>
                                 <table className="table">
-                                    
+
                                     <tbody>
                                         <tr>
                                             <td>ID</td>

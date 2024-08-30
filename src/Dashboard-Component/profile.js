@@ -3,7 +3,7 @@ import Adminmenu from './adminmenu';
 import Dashnavbar from './dashnavbar';
 import Adminnavigate from './adminnavigate';
 import axios from 'axios'; // Import Axios for HTTP requests
-import {jwtDecode} from 'jwt-decode'; // Correct import for jwtDecode
+import { jwtDecode } from 'jwt-decode'; // Correct import for jwtDecode
 
 const Profile = () => {
     const [userData, setUserData] = useState(null); // State to store user data
@@ -15,9 +15,9 @@ const Profile = () => {
                 if (token) {
                     const decodedToken = jwtDecode(token); // Decode the token to get user data
                     const userId = decodedToken.id; // Assuming the token contains the user ID as 'id'
-                    
+
                     // Make GET request to fetch user data
-                    const response = await axios.get(`http://localhost:7000/api/getone/${userId}`, {
+                    const response = await axios.get(`https:moneychess.in/api/getone/${userId}`, {
                         headers: {
                             Authorization: `Bearer ${token}` // Include authorization token in headers
                         }
@@ -47,23 +47,23 @@ const Profile = () => {
                     <Adminnavigate />
                     <div className="container mt-5">
                         <div className="card bg-dark text-white">
-                            
-                                        
-                                        {userData ? (
-                                            <div>
-                                                <p><strong>Name:</strong> {userData.name}</p>
-                                                <p><strong>Email:</strong> {userData.email}</p>
-                                                <p><strong>Role:</strong> {userData.role}</p>
-                                                <p><strong>Ref ID:</strong> {userData.ref_id}</p>
-                                                <p><strong>Remaining Funds:</strong> {userData.fond}</p>
-                                            </div>
-                                        ) : (
-                                            <p>Loading...</p>
-                                        )}
-                                    
-                                    
-                                
-                            
+
+
+                            {userData ? (
+                                <div>
+                                    <p><strong>Name:</strong> {userData.name}</p>
+                                    <p><strong>Email:</strong> {userData.email}</p>
+                                    <p><strong>Role:</strong> {userData.role}</p>
+                                    <p><strong>Ref ID:</strong> {userData.ref_id}</p>
+                                    <p><strong>Remaining Funds:</strong> {userData.fond}</p>
+                                </div>
+                            ) : (
+                                <p>Loading...</p>
+                            )}
+
+
+
+
                         </div>
                     </div>
                 </div>
