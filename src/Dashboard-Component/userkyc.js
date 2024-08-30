@@ -10,7 +10,7 @@ const Userkyc = () => {
     const fetchKycData = async () => {
         const token = localStorage.getItem('token');
         try {
-            const response = await fetch('https://moneychess.in/api/user-kyc', {
+            const response = await fetch('http://localhost:7000/api/user-kyc', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

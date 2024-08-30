@@ -12,7 +12,7 @@
 //   const handleLogIn = async (e) => {
 //     e.preventDefault();
 
-//     const apiRes = await fetch("https://moneychess.in/api/login", {
+//     const apiRes = await fetch("http://localhost:7000/api/login", {
 //       method: "POST",
 //       headers: {
 //         "Content-Type": "application/json",
@@ -105,7 +105,7 @@ const LogInForm = () => {
   const handleLogIn = async (e) => {
     e.preventDefault();
 
-    const apiRes = await fetch("https://moneychess.in/api/login", {
+    const apiRes = await fetch("http://localhost:7000/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

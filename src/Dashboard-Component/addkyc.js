@@ -48,7 +48,7 @@ const Addkyc = ({ onKycSubmitted }) => {
         if (validate()) {
             const token = localStorage.getItem('token');
             try {
-                const response = await fetch('https://moneychess.in/api/kyc', {
+                const response = await fetch('http://localhost:7000/api/kyc', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
