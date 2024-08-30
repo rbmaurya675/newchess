@@ -1,8 +1,8 @@
 
-
 // import React, { useState } from "react";
 // import { Button, Container, Form } from "react-bootstrap";
 // import { Link, useNavigate } from "react-router-dom";
+// import { jwtDecode } from "jwt-decode"; // Use named import
 
 // const LogInForm = () => {
 //   const navigate = useNavigate(); // Initialize useNavigate hook
@@ -23,15 +23,19 @@
 //       }),
 //     });
 
-//     console.log(apiRes);
-
 //     if (apiRes.status === 200) {
 //       const data = await apiRes.json();
-//       console.log("User logged in successfully");
 //       localStorage.setItem('token', data.token);
-//       console.log("token as ..",data.token)
-//       // navigate("/settingdash2"); // Navigate to the desired page after successful login
-//       navigate("/dashboardheader");
+//       const decodedToken = jwtDecode(data.token); // Use jwtDecode here
+//       const userRole = decodedToken.role;
+
+//       if (userRole === 'admin') {
+//         navigate("/admin");
+//       } else if (userRole === 'user') {
+//         navigate("/dashboardheader");
+//       } else {
+//         console.log("Unknown user role");
+//       }
 //     } else {
 //       console.log("Error logging in");
 //       // Handle unsuccessful login
@@ -80,9 +84,9 @@
 //             <div style={{ width: "200px" }}>
 //               <Link to="/account/signup">SIGN UP</Link>
 //             </div>
-//             <div>
+//             {/* <div>
 //               <Link to="/forget">Forget Password</Link>
-//             </div>
+//             </div> */}
 //           </div>
 //         </Form>
 //       </Container>
@@ -93,17 +97,22 @@
 // export default LogInForm;
 
 import React, { useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Container, Form, Spinner } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode"; // Use named import
+import { jwtDecode } from "jwt-decode";  // Corrected import
 
 const LogInForm = () => {
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false); // For loader
+  const [message, setMessage] = useState(""); // For displaying messages
+  const [messageColor, setMessageColor] = useState("red"); // Message color
 
   const handleLogIn = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setMessage(""); // Clear any previous messages
 
     const apiRes = await fetch("http://localhost:7000/api/login", {
       method: "POST",
@@ -118,21 +127,28 @@ const LogInForm = () => {
 
     if (apiRes.status === 200) {
       const data = await apiRes.json();
-      localStorage.setItem('token', data.token);
-      const decodedToken = jwtDecode(data.token); // Use jwtDecode here
+      localStorage.setItem("token", data.token);
+      const decodedToken = jwtDecode(data.token);
       const userRole = decodedToken.role;
 
-      if (userRole === 'admin') {
-        navigate("/admin");
-      } else if (userRole === 'user') {
-        navigate("/dashboardheader");
-      } else {
-        console.log("Unknown user role");
-      }
+      setMessage("Login successful!");
+      setMessageColor("green");
+
+      setTimeout(() => {
+        if (userRole === "admin") {
+          navigate("/admin");
+        } else if (userRole === "user") {
+          navigate("/dashboardheader");
+        } else {
+          console.log("Unknown user role");
+        }
+      }, 2000);
     } else {
-      console.log("Error logging in");
-      // Handle unsuccessful login
+      setMessage("Incorrect password or email.");
+      setMessageColor("red");
     }
+
+    setLoading(false);
   };
 
   return (
@@ -148,6 +164,11 @@ const LogInForm = () => {
           style={{ minWidth: "300px", maxWidth: "400px" }}
         >
           <h2 className="text-center">Log In</h2>
+          {message && (
+            <p className="text-center" style={{ color: messageColor }}>
+              {message}
+            </p>
+          )}
           <Form.Group controlId="Email">
             <Form.Label>Email</Form.Label>
             <Form.Control
@@ -167,7 +188,9 @@ const LogInForm = () => {
             />
           </Form.Group>
           <Form.Check type="checkbox" id="remember-me" label="Remember me" />
-          <Button type="submit">Submit</Button>
+          <Button type="submit" disabled={loading} style={{ color: "white" }}>
+            {loading ? <Spinner animation="border" size="sm" /> : "Submit"}
+          </Button>
 
           <p className="text-center border-top pt-1">Need an account?</p>
           <div
@@ -177,9 +200,6 @@ const LogInForm = () => {
             <div style={{ width: "200px" }}>
               <Link to="/account/signup">SIGN UP</Link>
             </div>
-            {/* <div>
-              <Link to="/forget">Forget Password</Link>
-            </div> */}
           </div>
         </Form>
       </Container>

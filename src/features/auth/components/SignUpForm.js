@@ -6,13 +6,14 @@
 //   const navigate = useNavigate();
 
 //   const [formData, setFormData] = useState({
-//     name: "",
+//     username: "",
 //     email: "",
 //     password: "",
 //     user_ref_id: "",
 //   });
 
 //   const [errors, setErrors] = useState({});
+//   const [message, setMessage] = useState("");
 
 //   const handleChange = (e) => {
 //     const { name, value } = e.target;
@@ -26,7 +27,6 @@
 //     e.preventDefault();
 //     const validationErrors = validate(formData);
 //     if (Object.keys(validationErrors).length === 0) {
-//       console.log("data as ..",formData)
 //       try {
 //         const response = await fetch("http://localhost:7000/api/create", {
 //           method: "POST",
@@ -37,14 +37,18 @@
 //         });
 
 //         if (response.status === 201) {
-//           alert(response, "jnjknjdckdsnKJ")
-//           console.log("User registered successfully");
-//           navigate("/login");
+//           const data = await response.json();
+//           setMessage(data.message);
+//           setTimeout(() => {
+//             navigate("/account/login");
+//           }, 2000);
 //         } else {
-//           console.log("Error registering user:", await response.text());
+//           const errorData = await response.json();
+//           setMessage(`Error: ${errorData.message}`);
 //         }
 //       } catch (error) {
 //         console.error("Error registering user:", error);
+//         setMessage("Error registering user");
 //       }
 //     } else {
 //       setErrors(validationErrors);
@@ -53,8 +57,8 @@
 
 //   const validate = (data) => {
 //     const errors = {};
-//     if (!data.name.trim()) {
-//       errors.name = "Name is required";
+//     if (!data.username.trim()) {
+//       errors.username = "Username is required";
 //     }
 //     if (!/\S+@\S+\.\S+/.test(data.email)) {
 //       errors.email = "Email address is invalid";
@@ -62,9 +66,9 @@
 //     if (data.password.length < 6) {
 //       errors.password = "Password must be at least 6 characters long";
 //     }
-//     // if (data.password !== data.cpassword) {
-//     //   errors.cpassword = "Passwords do not match";
-//     // }
+//     if (!data.user_ref_id.trim()) {
+//       errors.user_ref_id = "User reference ID is required";
+//     }
 //     return errors;
 //   };
 
@@ -84,17 +88,17 @@
 //             <div className="shadow-lg bg-white rounded-3 p-3">
 //               <h2 className="text-center">Sign Up</h2>
 //               <Form onSubmit={handleSubmit}>
-//                 <Form.Group controlId="name">
-//                   <Form.Label>Name</Form.Label>
+//                 <Form.Group controlId="username">
+//                   <Form.Label>Username</Form.Label>
 //                   <Form.Control
 //                     type="text"
-//                     name="name"
-//                     value={formData.name}
+//                     name="username"
+//                     value={formData.username}
 //                     onChange={handleChange}
-//                     isInvalid={!!errors.name}
+//                     isInvalid={!!errors.username}
 //                   />
 //                   <Form.Control.Feedback type="invalid">
-//                     {errors.name}
+//                     {errors.username}
 //                   </Form.Control.Feedback>
 //                 </Form.Group>
 
@@ -126,8 +130,8 @@
 //                   </Form.Control.Feedback>
 //                 </Form.Group>
 
-//                 <Form.Group controlId="cpassword">
-//                   <Form.Label>Ref id</Form.Label>
+//                 <Form.Group controlId="user_ref_id">
+//                   <Form.Label>User Reference ID</Form.Label>
 //                   <Form.Control
 //                     type="text"
 //                     name="user_ref_id"
@@ -139,6 +143,8 @@
 //                     {errors.user_ref_id}
 //                   </Form.Control.Feedback>
 //                 </Form.Group>
+
+//                 {message && <p>{message}</p>}
 
 //                 <div className="d-flex justify-content-center mt-3">
 //                   <Button variant="primary" type="submit" className="w-100">
@@ -157,7 +163,7 @@
 // export default SignUp;
 
 import React, { useState } from "react";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { Form, Button, Container, Row, Col, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
@@ -172,6 +178,7 @@ const SignUp = () => {
 
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -185,6 +192,7 @@ const SignUp = () => {
     e.preventDefault();
     const validationErrors = validate(formData);
     if (Object.keys(validationErrors).length === 0) {
+      setLoading(true); // Show loader
       try {
         const response = await fetch("http://localhost:7000/api/create", {
           method: "POST",
@@ -198,15 +206,18 @@ const SignUp = () => {
           const data = await response.json();
           setMessage(data.message);
           setTimeout(() => {
+            setLoading(false); // Hide loader
             navigate("/account/login");
           }, 2000);
         } else {
           const errorData = await response.json();
           setMessage(`Error: ${errorData.message}`);
+          setLoading(false); // Hide loader
         }
       } catch (error) {
         console.error("Error registering user:", error);
         setMessage("Error registering user");
+        setLoading(false); // Hide loader
       }
     } else {
       setErrors(validationErrors);
@@ -305,8 +316,26 @@ const SignUp = () => {
                 {message && <p>{message}</p>}
 
                 <div className="d-flex justify-content-center mt-3">
-                  <Button variant="primary" type="submit" className="w-100">
-                    Sign Up
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    className="w-100"
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      <>
+                        <Spinner
+                          as="span"
+                          animation="border"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                        />{" "}
+                        Registering...
+                      </>
+                    ) : (
+                      "Sign Up"
+                    )}
                   </Button>
                 </div>
               </Form>
