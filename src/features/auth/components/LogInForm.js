@@ -109,10 +109,10 @@ const LogInForm = () => {
   const [message, setMessage] = useState(""); // For displaying messages
   const [messageColor, setMessageColor] = useState("red"); // Message color
 
-  const handleLogIn = async (e) => {
+  const handleLogIn = async (e) => { 
     e.preventDefault();
     setLoading(true);
-    setMessage(""); // Clear any previous messages
+    setMessage(""); // Clear any previous messages 
 
     const apiRes = await fetch("https:moneychess.in/api/login", {
       method: "POST",

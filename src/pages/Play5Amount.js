@@ -1,47 +1,50 @@
-
-
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // useNavigate for React Router v6
 import Slider from "react-slick";
 import styles from './Practice.module.css';
 
 const Play5Amount = () => {
     const [error, setError] = useState(null);
+    const navigate = useNavigate(); // useNavigate replaces useHistory in React Router v6
     const token = localStorage.getItem('token');
 
     const handleDepositSubmit = async (amount) => {
+        if (!token) {
+            console.log("No token found. Redirecting to login.");
+            navigate('/account/login');
+            return;
+        }
+
         const requestOptions = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token}`,
             },
-            body: JSON.stringify({
-                amount: parseFloat(amount)
-            })
+            body: JSON.stringify({ amount: parseFloat(amount) }),
         };
 
         try {
-            const response = await fetch('https:moneychess.in/api/add-fond', requestOptions);
+            console.log("Sending request to add funds:", requestOptions);
+            const response = await fetch('https://moneychess.in/api/add-fond', requestOptions);
             const data = await response.json();
-            if (response.ok) {
-                if (data.statusCode === '201') {
-                    console.log('Success:', data.message);
-                    // Redirect to /practice/solo upon successful deposit
-                    window.location.href = '/practice/solo';
-                } else {
-                    setError(data.message);
-                }
+            console.log("API response:", data);
+
+            if (response.ok && data.statusCode === '201') {
+                console.log("Deposit successful. Redirecting...");
+                window.location.href = 'https://chessboard.jankiwebinfotech.com/';
             } else {
-                setError(data.message);
+                console.error("Failed to add funds:", data.message);
+                setError(data.message || 'Failed to add funds.');
+                // window.location.href = '/account/login'
             }
         } catch (error) {
-            console.error('Error adding fond:', error);
-            setError('An error occurred while adding the fond.');
+            console.error('Error adding funds:', error);
+            setError('An error occurred while processing your request.');
         }
     };
 
-    const settings = {
+    const sliderSettings = {
         dots: false,
         infinite: false,
         speed: 1000,
@@ -57,113 +60,45 @@ const Play5Amount = () => {
                     slidesToShow: 2,
                     slidesToScroll: 1,
                     infinite: true,
-                    dots: true
-                }
+                    dots: true,
+                },
             },
             {
                 breakpoint: 600,
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
-                    initialSlide: 1
-                }
-            }
-        ]
+                    initialSlide: 1,
+                },
+            },
+        ],
     };
 
     return (
         <div className={styles.container}>
-            <Slider {...settings} style={{ marginTop: '50px' }}>
-                <div className={styles.card} onClick={() => handleDepositSubmit(30)}>
-                    <a href="https://chessboard.jankiwebinfotech.com/" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
-                        <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
-                    </a>
-                    {/* <Link to="/practice/solo" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
-                        <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
-                    </Link> */}
-                    <h3>Amount ₹ 30</h3>
-                    <p>Deposit</p>
-                    <p>Lucknow</p>
-                    <p>Play with a Online </p>
-                </div>
-                <div className={styles.card} onClick={() => handleDepositSubmit(50)}>
-                    <a href="https://chessboard.jankiwebinfotech.com/" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
-                        <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
-                    </a>
-                    {/* <Link to="/practice/solo" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
-                        <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
-                    </Link> */}
-                    <h3>Amount ₹ 50</h3>
-                    <p>Deposit</p>
-                    <p>Delhi</p>
-                    <p>Play with a Online </p>
-                </div>
-                <div className={styles.card} onClick={() => handleDepositSubmit(100)}>
-                    <a href="https://chessboard.jankiwebinfotech.com/" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
-                        <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
-                    </a>
-                    <h3>Amount ₹ 100</h3>
-                    <p>Deposit</p>
-                    <p>Chanaini</p>
-                    <p>Play With a Online</p>
-                </div>
-                <div className={styles.card} onClick={() => handleDepositSubmit(200)}>
-                    <a href="https://chessboard.jankiwebinfotech.com/" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
-                        <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
-                    </a>
-                    <h3>Amount ₹ 200</h3>
-                    <p>Deposit</p>
-                    <p>Chanaini</p>
-                    <p>Play With a Online</p>
-                </div>
-                <div className={styles.card} onClick={() => handleDepositSubmit(500)}>
-                    {/* <Link to="/practice/solo" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
-                        <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
-                    </Link> */}
-                    {/* <a href="http://localhost:3001/chess/"  style={{ textDecoration: 'none', backgroundColor: 'green' }}>
-                        <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
-                    </a> */}
-                    <a href="https://chessboard.jankiwebinfotech.com/" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
-                        <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
-                    </a>
-                    <h3>Amount ₹ 500</h3>
-                    <p>Deposit</p>
-                    <p>Chanaini</p>
-                    <p>Play With a Online</p>
-                </div>
-                <div className={styles.card} onClick={() => handleDepositSubmit(1000)}>
-                    <Link to="/practice/solo" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
-                        <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
-                    </Link>
-                    <h3>Amount ₹ 1000</h3>
-                    <p>Deposit</p>
-                    <p>Chanaini</p>
-                    <p>Play With a Online</p>
-                </div>
-                <div className={styles.card} onClick={() => handleDepositSubmit(1500)}>
-                    <a href="https://chessboard.jankiwebinfotech.com/" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
-                        <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
-                    </a>
-                    <h3>Amount ₹ 1500</h3>
-                    <p>Deposit</p>
-                    <p>Chanaini</p>
-                    <p>Play With a Online</p>
-                </div>
-                <div className={styles.card} onClick={() => handleDepositSubmit(2000)}>
-                    <a href="https://chessboard.jankiwebinfotech.com/" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
-                        <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
-                    </a>
-                    <h3>Amount ₹ 2000</h3>
-                    <p>Deposit</p>
-                    <p>Chanaini</p>
-                    <p>Play With a Online</p>
-                </div>
-                {/* Add other cards similarly for different amounts */}
+            {error && <p className={styles.error}>{error}</p>}
+            <Slider {...sliderSettings} className={styles.slider}>
+
+                {[30, 50, 100, 200, 500, 1000, 1500, 2000].map((amount) => (
+                    <div
+                        key={amount}
+                        className={styles.card}
+                        onClick={() => handleDepositSubmit(amount)}
+                    >
+                        <img
+                            src="logo2.png"
+                            className={styles.logo}
+                            alt={`Logo for amount ₹${amount}`}
+                        />
+                        <h3>Amount ₹ {amount}</h3>
+                        <p>Deposit</p>
+                        <p>Play Online</p>
+                    </div>
+                ))}
+
             </Slider>
         </div>
     );
 };
 
 export default Play5Amount;
-
-
