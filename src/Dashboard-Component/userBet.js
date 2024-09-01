@@ -4,13 +4,13 @@ import Dashboardmenu from './dashboardmenu';
 import Addkyc from './addkyc';
 import styles from './dash.css';
 
-const Userkyc = () => {
+const UserBet = () => {
     const [kycData, setKycData] = useState([]);
 
     const fetchKycData = async () => {
         const token = localStorage.getItem('token');
         try {
-            const response = await fetch('http://localhost:7000/api/user-kyc', {
+            const response = await fetch('http://localhost:7000/api/withdrawn', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -44,28 +44,29 @@ const Userkyc = () => {
                             <div className='col-sm-3'></div>
                             <Addkyc onKycSubmitted={fetchKycData} />
                             <div>
-                                <h2>KYC Data</h2>
+                                <h2>Bet Data</h2>
                                 {kycData.length > 0 ? (
                                     <table className="table">
                                         <thead>
                                             <tr>
+                                                <th>Name</th>
                                                 <th>Email</th>
-                                                <th>Account Holder Name</th>
-                                                <th>Account Number</th>
-                                                <th>IFSC Code</th>
-                                                <th>Bank Name</th>
-                                                <th>Branch</th>
+                                                <th>Amount</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                               
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {kycData.map((kyc) => (
                                                 <tr key={kyc.id}>
-                                                    <td>{kyc.email_id}</td>
-                                                    <td>{kyc.account_holder_name}</td>
-                                                    <td>{kyc.account_number}</td>
-                                                    <td>{kyc.ifsc_code}</td>
-                                                    <td>{kyc.bank_name}</td>
-                                                    <td>{kyc.branch}</td>
+                                                    <td>{kyc.name}</td>
+                                                    <td>{kyc.email}</td>
+                                                    <td>{kyc.amount}</td>
+                                                    <td>{kyc.status}</td>
+                                                    <td>{kyc.date}</td>
+                                                    
+                                                    
                                                 </tr>
                                             ))}
                                         </tbody>
@@ -82,4 +83,4 @@ const Userkyc = () => {
     );
 };
 
-export default Userkyc;
+export default UserBet;

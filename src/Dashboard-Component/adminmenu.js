@@ -15,7 +15,7 @@ const Adminmenu = () => {
         }
 
         try {
-            const apiRes = await fetch("https:moneychess.in/api/logout", {
+            const apiRes = await fetch("http://localhost:7000/api/logout", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -66,9 +66,12 @@ const Adminmenu = () => {
                         <li className='mt-4'>
                             <i class="bi bi-wallet2  text-white text-xl"></i>
 
-                            <Link to="/adminwithdrow" style={{ textDecoration: 'none' }} >  <span class="flex-1 ms-3 whitespace-nowrap text-dark text-white" >Withdrawal</span></Link>
+                            <Link to="/adminwithdrow" style={{ textDecoration: 'none' }} >  <span class="flex-1 ms-3 whitespace-nowrap text-dark text-white" >bets</span></Link>
+                        </li>
+                        <li className='mt-4'>
+                            <i class="bi bi-wallet2  text-white text-xl"></i>
 
-
+                            <Link to="/adminallwithdrow" style={{ textDecoration: 'none' }} >  <span class="flex-1 ms-3 whitespace-nowrap text-dark text-white" >withdrawn</span></Link>
                         </li>
 
                         <li className='mt-4'>

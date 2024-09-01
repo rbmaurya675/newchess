@@ -134,7 +134,7 @@ const DashboardMenu = () => {
         }
 
         try {
-            const apiRes = await fetch("https:moneychess.in/api/logout", {
+            const apiRes = await fetch("http://localhost:7000/api/logout", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -190,6 +190,10 @@ const DashboardMenu = () => {
                                     <i className="bi bi-person-check text-2xl text-white mx-2"></i>
                                     <Link to='/Userkyc' style={{ textDecoration: 'none', color: 'white' }}>User KYC</Link>
                                 </p>
+                                <p className="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-700">
+                                    <i className="bi bi-person-check text-2xl text-white mx-2"></i>
+                                    <Link to='/UserBet' style={{ textDecoration: 'none', color: 'white' }}>User Bets</Link>
+                                </p>
                                 <p className="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
                                     <i className="bi bi-arrow-repeat text-2xl text-white mx-2"></i>
                                     <Link to="/settingdash2" className='text-white' style={{ textDecoration: 'none' }}>Deposit</Link>
@@ -231,7 +235,7 @@ const DashboardMenu = () => {
                     </p>
                     <p className="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
                         <i className="bi bi-cash-stack text-xl text-white mx-2"></i>
-                        <Link to='/Withdrowal' style={{ textDecoration: 'none', color: 'white' }}>Withdrawal</Link>
+                        <Link to='/Withdrowal' style={{ textDecoration: 'none', color: 'white' }}>Bets</Link>
                     </p>
                     <p className="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-700">
                         <i className="bi bi-person-check text-2xl text-white mx-2"></i>

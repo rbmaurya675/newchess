@@ -26,7 +26,7 @@ const Play5Amount = () => {
 
         try {
             console.log("Sending request to add funds:", requestOptions);
-            const response = await fetch('https://moneychess.in/api/add-fond', requestOptions);
+            const response = await fetch('http://localhost:7000/api/add-fond', requestOptions);
             const data = await response.json();
             console.log("API response:", data);
 

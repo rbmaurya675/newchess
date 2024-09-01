@@ -7,19 +7,17 @@ const Withdrowal = () => {
     const [error, setError] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [formData, setFormData] = useState({
-        email: '',
-        password: '',
-        accountHolderName: '',
+        fond: '',
         accountNumber: '',
-        confirmAccountNumber: '',
         ifscCode: '',
-        bankName: '',
-        branch: ''
+        withdrawalAmount: '',
+        password: ''
     });
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
         fetchWithdrawals();
+        fetchWithdrawalForm();
     }, []);
 
     const fetchWithdrawals = async () => {
@@ -32,17 +30,46 @@ const Withdrowal = () => {
         };
 
         try {
-            const response = await fetch('https:moneychess.in/api/user-withdrawn', requestOptions);
+            const response = await fetch('http://localhost:7000/api/display-user-withdrawal', requestOptions);
             const data = await response.json();
 
             if (response.ok) {
-                setWithdrawals(data.data);
+                setWithdrawals(data.data);  // Update the state with the latest withdrawal data
             } else {
                 setError(data.message);
             }
         } catch (error) {
             console.error('Error fetching withdrawals:', error);
             setError('An error occurred while fetching withdrawals.');
+        }
+    };
+
+    const fetchWithdrawalForm = async () => {
+        const token = localStorage.getItem('token');
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        };
+        try {
+            const response = await fetch('http://localhost:7000/api/withdrawal-form', requestOptions);
+            const data = await response.json();
+
+            if (response.ok) {
+                const { fond, account_number, ifsc_code } = data.data[0];
+                setFormData({
+                    ...formData,
+                    fond,
+                    accountNumber: account_number,
+                    ifscCode: ifsc_code
+                });
+            } else {
+                setError(data.message);
+            }
+        } catch (error) {
+            console.error('Error fetching withdrawal form:', error);
+            setError('An error occurred while fetching the withdrawal form.');
         }
     };
 
@@ -57,9 +84,39 @@ const Withdrowal = () => {
         });
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        // Add your form validation and submission logic here
+        
+        const { withdrawalAmount, password } = formData;
+
+        const token = localStorage.getItem('token');
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                amount: withdrawalAmount,
+                password
+            })
+        };
+
+        try {
+            const response = await fetch('http://localhost:7000/api/withdrawal-form-submit', requestOptions);
+            const data = await response.json();
+
+            if (response.ok) {
+                alert(data.message); // Show a success message
+                toggleModal(); // Close the form modal
+                fetchWithdrawals(); // Refresh the withdrawal history
+            } else {
+                setError(data.message); // Handle any errors
+            }
+        } catch (error) {
+            console.error('Error submitting withdrawal:', error);
+            setError('An error occurred while submitting the withdrawal.');
+        }
     };
 
     return (
@@ -74,15 +131,15 @@ const Withdrowal = () => {
                             className="block ml-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                             type="button"
                         >
-                            Add Bank
+                            Withdrawal
                         </button>
 
                         {isModalOpen && (
                             <div id="authentication-modal" tabIndex="-1" aria-hidden="true" className="fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-gray-900 bg-opacity-50">
-                                <div className="relative  w-full max-w-md max-h-full bg-white rounded-lg shadow dark:bg-gray-700">
-                                    <div className="flex items-center justify-between  md:p-5 border-b rounded-t dark:border-gray-600">
+                                <div className="relative w-full max-w-md max-h-full bg-white rounded-lg shadow dark:bg-gray-700">
+                                    <div className="flex items-center justify-between md:p-5 border-b rounded-t dark:border-gray-600">
                                         <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                                            <div className='text-dark'>Withdrowal</div>
+                                            <div className='text-dark'>Withdrawal</div>
                                         </h3>
                                         <button
                                             type="button"
@@ -97,42 +154,36 @@ const Withdrowal = () => {
                                     </div>
                                     <div className='col-sm-12 shadow-md p-3 mt-1 mb-5' style={{ background: 'white' }}>
                                         <form onSubmit={handleSubmit}>
-                                            {/* Form inputs here */}
                                             <div className="mb-3">
-                                                <h5 className='text-black'>Total Ammount :- <span>$ 2345678</span></h5>
+                                                <h5 className='text-black'>Total Amount: <span>$ {formData.fond}</span></h5>
                                             </div>
                                             <div className="mb-3">
                                                 <input
                                                     type="text"
-                                                    className={`form-control mt-2 ${errors.bankName ? 'is-invalid' : ''}`}
-                                                    name="bankName"
-                                                    placeholder='Withdrowal Amount'
-                                                    value={formData.bankName1}
+                                                    className={`form-control mt-2 ${errors.withdrawalAmount ? 'is-invalid' : ''}`}
+                                                    name="withdrawalAmount"
+                                                    placeholder='Withdrawal Amount'
+                                                    value={formData.withdrawalAmount}
                                                     onChange={handleChange}
                                                 />
-                                                {errors.bankName && <div className="invalid-feedback">{errors.bankName}</div>}
+                                                {errors.withdrawalAmount && <div className="invalid-feedback">{errors.withdrawalAmount}</div>}
                                             </div>
                                             <div className="mb-3">
-                                                <p className='text-black'>Account Number :-
-                                                    <span> 1234567890</span>
-                                                </p>
+                                                <p className='text-black'>Account Number: <span>{formData.accountNumber}</span></p>
                                             </div>
-                                            
                                             <div className="mb-3">
-                                                <p className='text-black'>IFSC code :-
-                                                    <span> SDFGHJ123D</span>
-                                                </p>
+                                                <p className='text-black'>IFSC code: <span>{formData.ifscCode}</span></p>
                                             </div>
                                             <div className="mb-3">
                                                 <input
-                                                    type="text"
-                                                    className={`form-control mt-2 ${errors.bankName ? 'is-invalid' : ''}`}
-                                                    name="bankName"
+                                                    type="password"
+                                                    className={`form-control mt-2 ${errors.password ? 'is-invalid' : ''}`}
+                                                    name="password"
                                                     placeholder='Enter Password'
-                                                    value={formData.bankName}
+                                                    value={formData.password}
                                                     onChange={handleChange}
                                                 />
-                                                {errors.bankName && <div className="invalid-feedback">{errors.bankName}</div>}
+                                                {errors.password && <div className="invalid-feedback">{errors.password}</div>}
                                             </div>
                                             <button type="submit" className="btn btn-info">Submit</button>
                                         </form>
@@ -151,16 +202,18 @@ const Withdrowal = () => {
                                     <thead>
                                         <tr>
                                             <th>Amount</th>
-                                            <th>Status</th>
+                                            <th>account_number</th>
+                                            <th>ifsc_code</th>
                                             <th>Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {withdrawals.map(withdrawal => (
+                                        {withdrawals.map((withdrawal) => (
                                             <tr key={withdrawal.id}>
                                                 <td>${withdrawal.amount}</td>
-                                                <td>{withdrawal.status === 0 ? 'Pending' : 'Completed'}</td>
-                                                <td>{new Date(withdrawal.date).toLocaleString()}</td>
+                                                <td>${withdrawal.account_number}</td>
+                                                <td>{withdrawal.ifsc_code}</td>
+                                                <td>{new Date(withdrawal.withdrawal_date).toLocaleString()}</td>
                                             </tr>
                                         ))}
                                     </tbody>

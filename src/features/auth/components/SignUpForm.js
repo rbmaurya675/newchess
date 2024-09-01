@@ -28,7 +28,7 @@
 //     const validationErrors = validate(formData);
 //     if (Object.keys(validationErrors).length === 0) {
 //       try {
-//         const response = await fetch("https:moneychess.in/api/create", {
+//         const response = await fetch("http://localhost:7000/api/create", {
 //           method: "POST",
 //           headers: {
 //             "Content-Type": "application/json",
@@ -194,7 +194,7 @@ const SignUp = () => {
     if (Object.keys(validationErrors).length === 0) {
       setLoading(true); // Show loader
       try {
-        const response = await fetch("https:moneychess.in/api/create", {
+        const response = await fetch("http://localhost:7000/api/create", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

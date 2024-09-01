@@ -27,7 +27,7 @@ const Dashboardheader = () => {
         };
 
         try {
-            const response = await fetch('https:moneychess.in/api/user-transation-details', requestOptions);
+            const response = await fetch('http://localhost:7000/api/user-transation-details', requestOptions);
             const data = await response.json();
 
             if (response.ok) {
@@ -80,7 +80,7 @@ const Dashboardheader = () => {
                             <Card className='shadow' style={{ background: '#6C0CAC', color: 'white' }}>
                                 <div className='p-3'>
                                     <div className='text-center'>
-                                        <h4>total_Withdrawal_today</h4>
+                                        <h4>total_today_playing_amount</h4>
                                         <h2>{userData.total_withdrawal_today} Rs.</h2>
                                     </div>
                                 </div>

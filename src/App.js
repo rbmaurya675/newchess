@@ -85,12 +85,14 @@ import Dashboardheader from "./Dashboard-Component/dashboardheader.js";
 import Withdrowal from "./Dashboard-Component/withdrowal.js";
 import Dashincome from "./Dashboard-Component/dashincome.js";
 import Userkyc from "./Dashboard-Component/userkyc.js";
+import UserBet from "./Dashboard-Component/userBet.js";
 import Admindashborad from "./Dashboard-Component/admindashborad.js";
 import Admin from "./Dashboard-Component/admin.js";
 import Adminmenu from "./Dashboard-Component/adminmenu.js";
 import Userdata from "./Dashboard-Component/userdata.js";
 import Profile from "./Dashboard-Component/profile.js";
 import Adminwithdrow from "./Dashboard-Component/adminwithdrow.js";
+import Adminallwithdrow from "./Dashboard-Component/adminallwithdrow.js";
 import Admindeposit from "./Dashboard-Component/admindeposit.js";
 import Setting from "./Dashboard-Component/setting.js";
 import Translate from "./Dashboard-Component/translate.js";
@@ -113,6 +115,7 @@ function App() {
     "/Withdrowal",
     "/Dashincome",
     "/Userkyc",
+    "/UserBet",
     "/admindashborad",
     "/admin",
     "/userdata",
@@ -121,6 +124,7 @@ function App() {
     "/setting",
     "/translate",
     "/adminwithdrow",
+    "/adminallwithdrow",
     "/admindeposit",
     "/settingdash2",
     "/profildash2",
@@ -157,12 +161,14 @@ function App() {
           <Route path="/Withdrowal" element={<Withdrowal />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/Userkyc" element={<Userkyc />} />
+          <Route path="/UserBet" element={<UserBet />} />
           <Route path="/Dashincome" element={<Dashincome />} />
           <Route path="/userdata" element={<Userdata />} />
           <Route path="/Adminmenu" element={<Adminmenu />} />
           <Route path="/Admindashborad" element={<Admindashborad />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/adminwithdrow" element={<Adminwithdrow />} />
+          <Route path="/adminallwithdrow" element={<Adminallwithdrow />} />
           {/* <Route path="/deposit" element={<deposit} */}
           <Route path="/admindeposit" element={<Admindeposit />} />
           <Route path="/settingdash2" element={<Settingdash2 />} />
