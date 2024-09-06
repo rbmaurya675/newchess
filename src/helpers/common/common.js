@@ -8,12 +8,22 @@ export const squareIndexToNotation = (index) => {
 }
 
 export const squareNotationToIndex = (notation) => {
+	console.log("notation....",notation)
+	console.log("typeof notation....",typeof notation)
+	if (typeof notation === 'number') {
+		// Convert the number back to a string if it's supposed to represent a notation
+		notation = squareIndexToNotation(notation); // Implement this function if needed
+	}
+	
+	// console.log("notation:", notation, typeof notation);
 	let columnLetter = notation.charAt(0);
+	// console.log("columnletter....",columnLetter)
 	let columnMap = {"a": 0, "b": 1, "c": 2, "d": 3, "e": 4, "f": 5,"g": 6, "h": 7};
-
+	// console.log("columnmap...",columnMap)
 	let row = 8-parseInt(notation.charAt(1));
+	// console.log("now...",row)
 	let column = columnMap[columnLetter];
-
+    // console.log("column....",column)
 	return (8*row)+column;
 }
 
