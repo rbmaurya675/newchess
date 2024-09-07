@@ -9,11 +9,11 @@ const Play5Amount = () => {
     const token = localStorage.getItem('token');
 
     const handleDepositSubmit = async (amount) => {
-        if (!token) {
-            console.log("No token found. Redirecting to login.");
-            navigate('/account/login');
-            return;
-        }
+        // if (!token) {
+        //     console.log("No token found. Redirecting to login.");
+        //     navigate('/account/login');
+        //     return;
+        // }
 
         const requestOptions = {
             method: 'POST',
