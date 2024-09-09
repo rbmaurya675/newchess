@@ -30,7 +30,7 @@ const Withdrowal = () => {
         };
 
         try {
-            const response = await fetch('http://localhost:7000/api/display-user-withdrawal', requestOptions);
+            const response = await fetch('https://moneychess.in/api/display-user-withdrawal', requestOptions);
             const data = await response.json();
 
             if (response.ok) {
@@ -53,7 +53,7 @@ const Withdrowal = () => {
             }
         };
         try {
-            const response = await fetch('http://localhost:7000/api/withdrawal-form', requestOptions);
+            const response = await fetch('https://moneychess.in/api/withdrawal-form', requestOptions);
             const data = await response.json();
 
             if (response.ok) {
@@ -86,7 +86,7 @@ const Withdrowal = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        
+
         const { withdrawalAmount, password } = formData;
 
         const token = localStorage.getItem('token');
@@ -103,7 +103,7 @@ const Withdrowal = () => {
         };
 
         try {
-            const response = await fetch('http://localhost:7000/api/withdrawal-form-submit', requestOptions);
+            const response = await fetch('https://moneychess.in/api/withdrawal-form-submit', requestOptions);
             const data = await response.json();
 
             if (response.ok) {

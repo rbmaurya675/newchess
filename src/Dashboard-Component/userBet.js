@@ -10,7 +10,7 @@ const UserBet = () => {
     const fetchKycData = async () => {
         const token = localStorage.getItem('token');
         try {
-            const response = await fetch('http://localhost:7000/api/withdrawn', {
+            const response = await fetch('https://moneychess.in/api/withdrawn', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ const UserBet = () => {
                                                 <th>Amount</th>
                                                 <th>Status</th>
                                                 <th>Date</th>
-                                               
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -65,8 +65,8 @@ const UserBet = () => {
                                                     <td>{kyc.amount}</td>
                                                     <td>{kyc.status}</td>
                                                     <td>{kyc.date}</td>
-                                                    
-                                                    
+
+
                                                 </tr>
                                             ))}
                                         </tbody>

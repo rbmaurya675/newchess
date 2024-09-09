@@ -39,91 +39,98 @@ const Play10Amount50 = () => {
 
     return (
         <div className={styles.container}>
-            <Slider {...settings} style={{ marginTop: '50px' }}>
-            <div className={styles.card} style={{ background: 'green' }}>
-            <Link to="/p2P?amount=30" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
-                <img src="logo2.png" alt="Logo" style={{ height: "300px", justifyItems: 'center' }} />
-                <h3>Amount ₹ 30</h3>
-                <p>Lucknow</p>
-                <p>Time 10 Minutes</p>
-                <p>Play with an Online</p>
-            </Link>
-        </div>
+            <Slider {...settings}>
                 <div className={styles.card} style={{ background: 'green' }}>
-                <Link to="/p2P?amount=50" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
-                        <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
-                    {/* <img src="logo2.png" /> */}
-                    <h3>Amount ₹ 50</h3>
-                    <p>Delhi</p>
-                    <p>time 10 Minutes</p>
-                    <p>Play with a Online </p>
-</Link>
+                    {/* <Link to="/p2P" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
+                        <img src="logo2.png" alt="Logo" style={{ height: "300px", justifyItems: 'center' }} />
+                        <h3>Amount ₹ 30</h3>
+                        <p>Lucknow</p>
+                        <p>Time 10 Minutes</p>
+                        <p>Play with an Online</p>
+                    </Link> */}
+                    <Link to="/account/login" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
+                        <img src="logo2.png" alt="Logo" style={{ height: "300px", justifyItems: 'center' }} />
+                        <h3>Amount ₹ 30</h3>
+                        <p>Lucknow</p>
+                        <p>Time 10 Minutes</p>
+                        <p>Play with an Online</p>
+                    </Link>
                 </div>
-
-                <div className={styles.card}>
-                <Link to="/p2P?amount=100" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
+                <div className={styles.card} style={{ background: 'green' }}>
+                    <Link to="/account/login" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
                         <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
-                    {/* <img src="logo2.png" /> */}
-                    <h3>Amount ₹ 100</h3>
-                    <p>Chanaini</p>
-                    <p>time 10 Minutes</p>
-                    <p>Play With a Online</p>
-</Link>
-                </div>
-
-                <div className={styles.card}>
-                <Link to="/p2P?amount=200" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
-                   
-                        <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
-                  
-                    <h3>Amount ₹ 200</h3>
-                    <p>Kanpur</p>
-                    <p>time 10 Minutes</p>
-                    <p>Play With a Online</p>
+                        {/* <img src="logo2.png" /> */}
+                        <h3>Amount ₹ 50</h3>
+                        <p>Delhi</p>
+                        <p>time 10 Minutes</p>
+                        <p>Play with a Online </p>
                     </Link>
                 </div>
 
                 <div className={styles.card}>
-                <Link to="/p2P?amount=500" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
-                    
+                    <Link to="/p2P" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
                         <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
-                   
-                    <h3>Amount ₹ 500</h3>
-                    <p>Mumbai</p>
-                    <p>time 10 Minutes</p>
-                    <p>Play With a Online</p>
+                        {/* <img src="logo2.png" /> */}
+                        <h3>Amount ₹ 100</h3>
+                        <p>Chanaini</p>
+                        <p>time 10 Minutes</p>
+                        <p>Play With a Online</p>
                     </Link>
                 </div>
 
                 <div className={styles.card}>
-                <Link to="/p2P?amount=1000" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
-                    
+                    <Link to="/p2P" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
+
                         <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
-              
-                    <h3>Amount ₹ 1000</h3>
-                    <p>Agra</p>
-                    <p>time 10 Minutes</p>
-                    <p>Play With a Online</p>
+
+                        <h3>Amount ₹ 200</h3>
+                        <p>Kanpur</p>
+                        <p>time 10 Minutes</p>
+                        <p>Play With a Online</p>
+                    </Link>
+                </div>
+
+                <div className={styles.card}>
+                    <Link to="/p2P" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
+
+                        <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
+
+                        <h3>Amount ₹ 500</h3>
+                        <p>Mumbai</p>
+                        <p>time 10 Minutes</p>
+                        <p>Play With a Online</p>
+                    </Link>
+                </div>
+
+                <div className={styles.card}>
+                    <Link to="/p2P" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
+
+                        <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
+
+                        <h3>Amount ₹ 1000</h3>
+                        <p>Agra</p>
+                        <p>time 10 Minutes</p>
+                        <p>Play With a Online</p>
                     </Link>
                 </div>
                 <div className={styles.card}>
-                <Link to="/p2P?amount=1500" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
+                    <Link to="/p2P" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
                         <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
-                   
-                    <h3>Amount ₹ 1500</h3>
-                    <p>Azamgarh</p>
-                    <p>time 10 Minutes</p>
-                    <p>Play With a Online</p>
-</Link>
+
+                        <h3>Amount ₹ 1500</h3>
+                        <p>Azamgarh</p>
+                        <p>time 10 Minutes</p>
+                        <p>Play With a Online</p>
+                    </Link>
                 </div>
                 <div className={styles.card}>
-                <Link to="/p2P?amount=5000" style={{ textDecoration: 'none', backgroundColor: 'green' }}>          
+                    <Link to="/p2P" style={{ textDecoration: 'none', backgroundColor: 'green' }}>
                         <img src="logo2.png" style={{ height: "300px", justifyItems: 'center' }} />
-                    <h3>Amount ₹ 5000</h3>
-                    <p>time 10 Minutes</p>
-                    <p>Allahabad</p>
-                    <p>Play With a Online</p>
-</Link>
+                        <h3>Amount ₹ 5000</h3>
+                        <p>time 10 Minutes</p>
+                        <p>Allahabad</p>
+                        <p>Play With a Online</p>
+                    </Link>
                 </div>
             </Slider>
         </div>

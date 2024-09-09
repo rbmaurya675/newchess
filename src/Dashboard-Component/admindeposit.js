@@ -12,7 +12,7 @@ const Admindeposit = () => {
             const token = localStorage.getItem('token'); // Get the token from localStorage
 
             try {
-                const response = await fetch('http://localhost:7000/api/deposits', {
+                const response = await fetch('https://moneychess.in/api/deposits', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ const Admindeposit = () => {
         const token = localStorage.getItem('token'); // Get the token from localStorage
 
         try {
-            const response = await fetch('http://localhost:7000/api/approve-deposit-request', {
+            const response = await fetch('https://moneychess.in/api/approve-deposit-request', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

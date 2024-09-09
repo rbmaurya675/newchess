@@ -12,7 +12,7 @@ const Adminallwithdrow = () => {
             const token = localStorage.getItem('token'); // Get the token from localStorage
 
             try {
-                const response = await fetch('http://localhost:7000/api/display-admin-withdrawal', {
+                const response = await fetch('https://moneychess.in/api/display-admin-withdrawal', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

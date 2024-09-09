@@ -41,7 +41,7 @@ const Settingdash2 = () => {
             })
         };
         try {
-            const response = await fetch('http://localhost:7000/api/add-deposit', requestOptions);
+            const response = await fetch('https://moneychess.in/api/add-deposit', requestOptions);
             const data = await response.json();
             if (response.ok) {
                 if (data.statusCode === '201') {
@@ -77,7 +77,7 @@ const Settingdash2 = () => {
             }
         };
         try {
-            const response = await fetch('http://localhost:7000/api/user-deposits', requestOptions);
+            const response = await fetch('https://moneychess.in/api/user-deposits', requestOptions);
             const data = await response.json();
             if (response.ok) {
                 setDeposits(data.data);

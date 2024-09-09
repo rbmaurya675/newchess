@@ -134,7 +134,7 @@ const DashboardMenu = () => {
         }
 
         try {
-            const apiRes = await fetch("http://localhost:7000/api/logout", {
+            const apiRes = await fetch("https://moneychess.in/api/logout", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

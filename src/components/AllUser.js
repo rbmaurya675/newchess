@@ -7,7 +7,7 @@ const AllUser = () => {
     console.log(data)
 
     const fethUser = async () => {
-        const res = await fetch("http://localhost:7000/api/getUser");
+        const res = await fetch("https://moneychess.in/api/getUser");
 
         const response = await res.json();
         setFormData(response);
